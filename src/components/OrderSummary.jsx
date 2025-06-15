@@ -1,9 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { ShopContext } from '../context/ShopContext'
-import MainTitle from './MainTitle';
+import MainTitle from './MainTitle.jsx';
 
 function OrderSummary() {
     const {currency, delivery_fee, totalProductPrice, overallPrice, getOverAllPrice} = useContext(ShopContext);
+    console.log(totalProductPrice);
+    console.log(overallPrice);
+
     
     useEffect(() => {
       const finalTotal = totalProductPrice + delivery_fee

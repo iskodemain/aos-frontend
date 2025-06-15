@@ -115,6 +115,7 @@ function PlaceOrder() {
           }
         } 
       }
+      
       let orderData = {
         items: orderItems,
         total_amount: overallPrice,
@@ -133,6 +134,7 @@ function PlaceOrder() {
         // }
         setCartItems({});
         toast.success('Order Placed Successfully', {...toastSuccess});
+        setCartItems({});
         navigate('/orders')
       }
       else {

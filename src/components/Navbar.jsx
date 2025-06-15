@@ -96,7 +96,7 @@ function Navbar() {
         <div className='lbutton bcontainer'>
             <img onClick={()=> token ? null : navigate('/login')} src={assets.profile_icon} className="lImg linkImg" alt="" draggable="false"/>
             {/* DROPDOWN MO SA NAVBAR */}
-            {token ? 
+            {!token ? 
             <div className="dropdown">
               <div className="dropdown-content">
                 <p onClick={()=>navigate('/orders')} className="dropdown-item">Orders</p>
@@ -133,7 +133,7 @@ function Navbar() {
           <li><NavLink to="/" onClick={() => {showSidebar(); }}>Home</NavLink></li>
           <li><NavLink to="/shop" onClick={() => {showSidebar(); }}>Shop</NavLink></li>
           <li><NavLink to="/about" onClick={() => {showSidebar(); }}>About</NavLink></li>
-          {token && 
+          {!token && 
             <li onClick={()=>{navigate('/orders'); showSidebar();}} className={`${orderData.length > 0 ? '' : 'hidden-orer'}`}><NavLink>Orders</NavLink></li>
           }
           <li><NavLink to="/wishlist" onClick={() => {showSidebar(); }}>Wishlist</NavLink></li>

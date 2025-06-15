@@ -18,6 +18,7 @@ const ShopContextProvider = (props) => {
     const [wishlistItems, setWishListItems] = useState({});
     const [showCartContent, setShowCartContent] = useState(false);
     const [totalProductPrice, getTotalProductPrice] = useState(0);
+    console.log(totalProductPrice);
     const [overallPrice, getOverAllPrice] = useState(0);
     // const [products, setProducts] = useState([])
     const [token, setToken] = useState('');

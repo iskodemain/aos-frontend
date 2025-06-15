@@ -15,7 +15,8 @@ function Cart() {
   const {products, currency, cartItems, setCartItems, updateQuantity, showCartContent, setShowCartContent, totalProductPrice, getTotalProductPrice, navigate, token, toastError, orderData, setOrderData} = useContext(ShopContext)
   const [cartData, setCartData] = useState([]);
 
-  
+  console.log(totalProductPrice);
+
   useEffect(() => {
     if (products.length > 0) {
       const tempData = [];
@@ -77,39 +78,35 @@ function Cart() {
 
     let newOrders = [];
 
-  for (const productId in cartItems) {
-    const sizeQuantityObj = cartItems[productId];
+    for (const productId in cartItems) {
+      const sizeQuantityObj = cartItems[productId];
 
-    for (const size in sizeQuantityObj) {
-      const quantity = sizeQuantityObj[size];
+      for (const size in sizeQuantityObj) {
+        const quantity = sizeQuantityObj[size];
 
-      // Find the product using its _id
-      const product = products.find(p => p._id === productId);
-      if (!product) continue;
+        // Find the product using its _id
+        const product = products.find(p => p._id === productId);
+        if (!product) continue;
 
-      const orderItem = {
-        order_id: Math.random().toString(36).substring(2, 10), // Random ID
-        product_id: product._id,
-        product_name: product.name,
-        price: product.price,
-        size: size,
-        quantity: quantity,
-        status: 'Pending',
-        payment: 'Unpaid',
-        payment_method: 'COD',
-        order_date: new Date().toISOString(),
-        images: product.image, // already an array
-        category: product.category
-      };
-      newOrders.push(orderItem);
+        const orderItem = {
+          order_id: Math.random().toString(36).substring(2, 10), // Random ID
+          product_id: product._id,
+          product_name: product.name,
+          price: product.price,
+          size: size,
+          quantity: quantity,
+          status: 'Pending',
+          payment: 'Unpaid',
+          payment_method: 'COD',
+          order_date: new Date().toISOString(),
+          images: product.image, // already an array
+          category: product.category
+        };
+        newOrders.push(orderItem);
+      }
     }
-  }
     // Add to orderData context
     setOrderData(prev => [...newOrders, ...prev]);
-
-    // Clear cart
-    setCartItems({});
-    
     navigate('/place-order')
   }
 
